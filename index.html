@@ -172,14 +172,46 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+    // Carousel functionality
+    const slides = document.querySelectorAll('.carousel-item');
+    const totalSlides = slides.length;
+    let currentIndex = 0;
+
+    // Show a specific slide
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.add('hidden', 'opacity-0'); // Hide all slides
+            if (i === index) {
+                slide.classList.remove('hidden', 'opacity-0'); // Show the active slide
+                slide.classList.add('opacity-100');
+            }
         });
-    </script>
+    }
+
+    // Show the next slide
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        showSlide(currentIndex);
+    }
+
+    // Show the previous slide
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        showSlide(currentIndex);
+    }
+
+    // Add event listeners for navigation buttons
+    document.getElementById('next').addEventListener('click', nextSlide);
+    document.getElementById('prev').addEventListener('click', prevSlide);
+
+    // Auto-change slides every 5 seconds
+    setInterval(nextSlide, 5000);
+
+    // Initialize the carousel by showing the first slide
+    showSlide(currentIndex);
+</script>
+
 </body>
 
 </html>
