@@ -24,13 +24,29 @@
         html {
             scroll-padding-top: 4rem;
         }
+
+        /* Ensure chatbot is visible */
+        .bp-widget-webchat {
+            position: fixed !important;
+            bottom: 10px;
+            right: 10px;
+            z-index: 9999;
+            display: block !important;
+        }
+
+        @media (max-width: 768px) {
+            .bp-widget-webchat {
+                width: 90%;
+                right: 5%;
+                bottom: 10px;
+            }
+        }
     </style>
 </head>
 
 <body class="bg-light text-gray-800 font-sans">
 
     <!-- AI chatbot link -->
-
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2024/12/01/06/20241201063820-NKK7HVFR.js"></script>
 
@@ -162,56 +178,18 @@
 
     <!-- Footer -->
     <footer class="bg-primary text-white py-6">
-        <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between">
-            <p>&copy; 2024 Bank Name. All rights reserved.</p>
-            <div class="flex space-x-4">
-                <a href="#" class="hover:text-accent">Facebook</a>
-                <a href="#" class="hover:text-accent">Twitter</a>
-                <a href="#" class="hover:text-accent">Instagram</a>
-            </div>
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Bank Name. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- JavaScript for Mobile Menu -->
     <script>
-    // Carousel functionality
-    const slides = document.querySelectorAll('.carousel-item');
-    const totalSlides = slides.length;
-    let currentIndex = 0;
-
-    // Show a specific slide
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.add('hidden', 'opacity-0'); // Hide all slides
-            if (i === index) {
-                slide.classList.remove('hidden', 'opacity-0'); // Show the active slide
-                slide.classList.add('opacity-100');
-            }
+        document.getElementById("menu-btn").addEventListener("click", function () {
+            const mobileMenu = document.getElementById("mobile-menu");
+            mobileMenu.classList.toggle("hidden");
         });
-    }
-
-    // Show the next slide
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        showSlide(currentIndex);
-    }
-
-    // Show the previous slide
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        showSlide(currentIndex);
-    }
-
-    // Add event listeners for navigation buttons
-    document.getElementById('next').addEventListener('click', nextSlide);
-    document.getElementById('prev').addEventListener('click', prevSlide);
-
-    // Auto-change slides every 5 seconds
-    setInterval(nextSlide, 5000);
-
-    // Initialize the carousel by showing the first slide
-    showSlide(currentIndex);
-</script>
-
+    </script>
 </body>
 
 </html>
